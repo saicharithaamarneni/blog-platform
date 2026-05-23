@@ -461,3 +461,5 @@ with app.app_context():
 
 
 application = app
+if __name__ == "__main__":
+    app.run()
