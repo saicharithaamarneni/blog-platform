@@ -318,38 +318,6 @@ def create():
         "create_post.html"
     )
 @app.route(
-"/edit/<int:id>",
-methods=["GET","POST"]
-)
-
-@login_required
-def edit(id):
-
-    post = Post.query.get_or_404(
-        id
-    )
-
-    if request.method == "POST":
-
-        post.title = request.form[
-            "title"
-        ]
-
-        post.content = request.form[
-            "content"
-        ]
-
-        db.session.commit()
-
-        return redirect(
-            "/dashboard"
-        )
-
-    return render_template(
-        "edit_post.html",
-        post=post
-    )
-@app.route(
 "/delete/<int:id>"
 )
 
@@ -489,12 +457,7 @@ def profile():
     )
 # ------------------
 with app.app_context():
-
     db.create_all()
 
 
 application = app
-
-
-if __name__ == "__main__":
-    app.run()
