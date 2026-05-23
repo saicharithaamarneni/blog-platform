@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Create Blog</title>
+
+<link
+rel="stylesheet"
+href="{{ url_for('static',filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>Create New Blog ✨</h1>
+
+<form
+method="POST"
+enctype="multipart/form-data">
+
+<label>Title</label>
+
+<input
+type="text"
+name="title"
+placeholder="Enter Blog Title"
+required>
+
+<label>Content</label>
+
+<textarea
+name="content"
+rows="10"
+placeholder="Write something amazing..."
+required>
+</textarea>
+
+<label>Cover Image</label>
+
+<input
+type="file"
+name="image">
+
+<br><br>
+
+<button type="submit">
+
+Publish Blog
+
+</button>
+
+</form>
+
+<br>
+
+<a
+href="/dashboard"
+class="btn">
+
+← Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

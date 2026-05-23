@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Profile</title>
+
+<link
+rel="stylesheet"
+href="{{url_for(
+'static',
+filename='style.css'
+)}}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card profile-card">
+
+<div class="avatar">
+
+👩
+
+</div>
+
+<h1>
+
+{{current_user.username}}
+
+</h1>
+
+<p
+style="
+font-size:18px;
+margin-bottom:30px;
+">
+
+📧 {{current_user.email}}
+
+</p>
+
+<div class="stats">
+
+<div class="stat">
+
+<h2>
+
+📝 Blogs
+
+</h2>
+
+<h1>
+
+{{posts}}
+
+</h1>
+
+</div>
+
+<div class="stat">
+
+<h2>
+
+💬 Comments
+
+</h2>
+
+<h1>
+
+{{comments}}
+
+</h1>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="post">
+
+<h2>
+
+✨ About Me
+
+</h2>
+
+<p>
+
+Welcome to my creative blogging space.
+I create posts, interact with readers,
+and share ideas.
+
+</p>
+
+</div>
+
+<br>
+
+<a
+href="/dashboard"
+class="btn">
+
+🏠 Dashboard
+
+</a>
+
+<a
+href="/create"
+class="btn">
+
+➕ Create Blog
+
+</a>
+
+<br><br>
+
+<a
+href="/logout"
+class="btn">
+
+Logout
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

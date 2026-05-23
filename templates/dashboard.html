@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Dashboard</title>
+
+<link
+rel="stylesheet"
+href="{{ url_for('static',filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>
+
+✨ Blog Feed
+
+</h1>
+
+<a
+href="/create"
+class="btn">
+
+＋ Create
+
+</a>
+
+<a
+href="/profile"
+class="btn">
+
+👤 Profile
+
+</a>
+
+<a
+href="/logout"
+class="btn">
+
+Logout
+
+</a>
+
+</div>
+{% if posts %}
+
+{% for post in posts %}
+
+<div class="post">
+{% if post.image %}
+
+<img
+src="{{ url_for(
+'static',
+filename='uploads/' + post.image
+) }}"
+style="
+width:100%;
+border-radius:15px;
+margin-bottom:15px;
+">
+
+{% endif %}
+<h2>
+
+{{ post.title }}
+
+</h2>
+
+<p>
+
+{{ post.content }}
+
+</p>
+
+<br>
+
+<a
+href="/post/{{post.id}}"
+class="btn">
+
+Open
+
+</a>
+<a
+href="/like/{{post.id}}"
+class="btn">
+
+❤️ Like
+
+</a>
+
+<br><br>
+
+<a
+href="/edit/{{post.id}}"
+class="btn">
+
+Edit
+
+</a>
+
+<br><br>
+
+<a
+href="/delete/{{post.id}}"
+class="btn">
+
+Delete
+
+</a>
+<br><br>
+
+<a
+href="/profile"
+class="btn">
+
+👤 Profile
+
+</a>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="post">
+
+<h2>No Blogs Yet</h2>
+
+<p>Create your first blog.</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Blog</title>
+
+<link
+rel="stylesheet"
+href="{{url_for(
+'static',
+filename='style.css'
+)}}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>
+
+{{post.title}}
+
+</h1>
+
+<p>
+
+{{post.content}}
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>
+
+Comments 💬
+
+</h2>
+
+<form
+action="/comment/{{post.id}}"
+method="POST">
+
+<textarea
+
+name="comment"
+
+rows="4"
+
+placeholder="Write comment"
+
+required>
+
+</textarea>
+
+<button>
+
+Post Comment
+
+</button>
+
+</form>
+
+</div>
+
+{% for c in comments %}
+
+<div class="post">
+
+{{c.text}}
+
+</div>
+
+{% endfor %}
+
+<br>
+
+<a
+href="/dashboard"
+class="btn">
+
+Back
+
+</a>
+
+</div>
+
+</body>
+
+</html>

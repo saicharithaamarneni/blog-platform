@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Edit Blog</title>
+
+<link
+rel="stylesheet"
+href="{{url_for(
+'static',
+filename='style.css'
+)}}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>Edit Blog ✏️</h1>
+
+<form method="POST">
+
+<input
+type="text"
+name="title"
+value="{{post.title}}"
+required>
+
+<textarea
+name="content"
+rows="10"
+required>
+
+{{post.content}}
+
+</textarea>
+
+<button>
+
+Save Changes
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
