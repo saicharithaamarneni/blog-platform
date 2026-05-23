@@ -266,33 +266,32 @@ def create():
         title=request.form["title"]
 
         content=request.form["content"]
+
         file=request.files.get(
-    "image"
-)
-
-filename=""
-
-if file and file.filename:
-
-    filename=secure_filename(
-        file.filename
-    )
-
-    upload_folder="/tmp/uploads"
-
-    os.makedirs(
-        upload_folder,
-        exist_ok=True
-    )
-
-    file.save(
-        os.path.join(
-            upload_folder,
-            filename
+            "image"
         )
-    )
 
-      
+        filename=""
+
+        if file and file.filename:
+
+            filename=secure_filename(
+                file.filename
+            )
+
+            upload_folder="/tmp/uploads"
+
+            os.makedirs(
+                upload_folder,
+                exist_ok=True
+            )
+
+            file.save(
+                os.path.join(
+                    upload_folder,
+                    filename
+                )
+            )
 
         post=Post(
 
@@ -489,7 +488,13 @@ def profile():
         comments=total_comments
     )
 # ------------------
+with app.app_context():
+
+    db.create_all()
+
+
 application = app
+
 
 if __name__ == "__main__":
     app.run()
