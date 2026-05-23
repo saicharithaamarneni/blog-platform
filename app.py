@@ -13,10 +13,13 @@ from flask_login import (
     current_user
 )
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    instance_path="/tmp"
+)
 
 app.config["SECRET_KEY"] = "blogsecret"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tmp/blog.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////tmp/blog.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
@@ -461,5 +464,3 @@ with app.app_context():
 
 
 application = app
-if __name__ == "__main__":
-    app.run()
