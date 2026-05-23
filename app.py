@@ -16,7 +16,8 @@ from flask_login import (
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "blogsecret"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tmp/blog.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -127,8 +128,7 @@ def load_user(user_id):
     )
 
 
-@app.before_request
-def create_tables():
+with app.app_context():
 
     db.create_all()
 
@@ -266,26 +266,33 @@ def create():
         title=request.form["title"]
 
         content=request.form["content"]
+        file=request.files.get(
+    "image"
+)
 
-        file=request.files["image"]
+filename=""
 
-        filename=""
+if file and file.filename:
 
-        if file:
+    filename=secure_filename(
+        file.filename
+    )
 
-            filename=secure_filename(
-                file.filename
-            )
+    upload_folder="/tmp/uploads"
 
-            os.makedirs(
-                "static/uploads",
-                exist_ok=True
-            )
+    os.makedirs(
+        upload_folder,
+        exist_ok=True
+    )
 
-            file.save(
-                "static/uploads/"
-                + filename
-            )
+    file.save(
+        os.path.join(
+            upload_folder,
+            filename
+        )
+    )
+
+      
 
         post=Post(
 
