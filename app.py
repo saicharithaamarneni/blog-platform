@@ -127,9 +127,10 @@ def load_user(user_id):
     )
 
 
-with app.app_context():
-    db.create_all()
+@app.before_request
+def create_tables():
 
+    db.create_all()
 
 # ------------------
 # HOME
@@ -483,6 +484,4 @@ def profile():
 # ------------------
 
 if __name__ == "__main__":
-    app.run(
-        debug=True
-    )
+    app.run()
